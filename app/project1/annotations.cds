@@ -1,0 +1,1 @@
+using GenAIService as service from '../../srv/cat-service';

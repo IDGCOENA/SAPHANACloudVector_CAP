@@ -1,0 +1,20 @@
+{
+		"ups-VECTOR": {
+		"object_owner": {
+			
+			"object_privileges": [{
+			    "schema": "VECTOR_DEMO",
+				"name": "PRODUCT_REVIEWS",
+				"privileges_with_grant_option": ["SELECT"]
+			}]
+		},
+		"application_user": {
+			
+			"object_privileges": [{
+				"schema": "VECTOR_DEMO",
+				"name": "PRODUCT_REVIEWS",
+				"privileges": ["SELECT"]
+			}]
+		}
+	}
+}

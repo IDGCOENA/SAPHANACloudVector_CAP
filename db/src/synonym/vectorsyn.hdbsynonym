@@ -1,0 +1,9 @@
+{
+  
+  "PRODUCT_REVIEWS": {
+    "target": {
+      "object": "PRODUCT_REVIEWS",
+      "schema": "VECTOR_DEMO"
+    }
+  }
+}

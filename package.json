@@ -1,0 +1,43 @@
+{
+    "name": "llm_cap",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap-cloud-sdk/connectivity": "^3.2.0",
+        "@sap-cloud-sdk/generator": "^3.4.0",
+        "@sap-cloud-sdk/http-client": "^3.2.0",
+        "@sap-cloud-sdk/openapi": "^3.2.0",
+        "@sap/cds": "^7.6.1",
+        "@sap/cds-compiler": "^4.6.0",
+        "@sap/cds-hana": "^2",
+        "@sap/xsenv": "^4.0.0"
+    },
+    "devDependencies": {
+        "@cap-js/sqlite": "^1",
+        "@sap/cds-common-content": "1.0.1",
+        "@sap/cds-dk": "^7.2.0",
+        "@sap/ux-specification": "^1.120.4",
+        "rimraf": "^3.0.2"
+    },
+    "scripts": {
+        "start": "cds-serve",
+        "watch-project1": "cds watch --open project1/webapp/index.html?sap-ui-xx-viewCache=false",
+        "undeploy": "cf undeploy llm_cap --delete-services --delete-service-keys --delete-service-brokers",
+        "build": "rimraf resources mta_archives && mbt build --mtar archive",
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-genai": "cds watch --open genai/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-genaiweb": "cds watch --open genaiweb/webapp/index.html?sap-ui-xx-viewCache=false"
+    },
+    "cds": {
+        "requires": {
+            "db": "hana"
+        }
+    },
+    "sapux": [
+        "app/project1",
+        "app/genai"
+    ]
+}
