@@ -1,29 +1,42 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="project1.controller.View1" displayBlock="true">
     <Page id="page" title="{i18n>title}">
-    <content>
-        <Text xmlns="sap.m" text="Enter Prompt:" id="text2"   class="sapUiSmallMarginBeginEnd"/>
+    <content><Text xmlns="sap.m" text="Enter Prompt:" id="text2" class="sapUiSmallMarginBeginEnd"/>
        
         <TextArea xmlns="sap.m" rows="3" id="area1" cols="60" value="{/promptValue}" class="sapUiSmallMarginBeginEnd"/>
-        <Button xmlns="sap.m" text="Submit" id="button0" press="onSubmit" class="sapUiSmallMarginBeginEnd" />
-        <Table items="{responseModel>/}" alternateRowColors="true" noDataText="Drop column list items here and columns in the area above" id="table0" >
+        <Button xmlns="sap.m" text="Submit" id="button0" press="onSubmit" class="sapUiSmallMarginBeginEnd"/>
+        <Table items="{responseModel>/}" alternateRowColors="true" noDataText="Drop column list items here and columns in the area above" id="table0">
             <items>
                 <ColumnListItem type="Active" id="item0">
                     <cells>
-                        <Text text="{responseModel>TEXT}" id="TEXT"/>
-                        <Text text="{responseModel>SENTIMENT}" id="SENTIMENT"/></cells>
+                         <Text text="{responseModel>FILENAME}" id="FILENAME" class="sapUiSmallMarginBeginEnd"/>
+                        <Text text="{responseModel>TEXT}" id="TEXT" class="sapUiSmallMarginBeginEnd"/>
+                        <Text text="{responseModel>SCORING}" id="SCORING" class="sapUiSmallMarginBeginEnd"/>
+                        <Text text="{responseModel>SENTIMENT}" id="SENTIMENT" class="sapUiSmallMarginBeginEnd"/></cells>
+                        
                 </ColumnListItem>
             </items>
             <columns>
                 <Column id="column0">
                     <header>
-                        <Label text="TEXT" id="label0"/>
+                        <Label text="FILENAME" id="label0"/>
                     </header>
                 </Column>
                 <Column id="column1">
                     <header>
-                        <Label text="SENTIMENT" id="label1"/>
+                        <Label text="TEXT" id="label1"/>
                     </header>
-                </Column></columns></Table>
+                </Column>
+                <Column id="column2">
+                    <header>
+                        <Label text="SCORING" id="label2"/>
+                    </header>
+                </Column>
+                <Column id="column3">
+                    <header>
+                        <Label text="SENTIMENT" id="label3"/>
+                    </header>
+                </Column>
+                </columns></Table>
     </content>
     </Page>
 </mvc:View>

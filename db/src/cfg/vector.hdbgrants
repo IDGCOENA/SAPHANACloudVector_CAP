@@ -6,7 +6,12 @@
 			    "schema": "VECTOR_DEMO",
 				"name": "PRODUCT_REVIEWS",
 				"privileges_with_grant_option": ["SELECT"]
-			}]
+			},
+		{
+			"schema": "VECTOR_DEMO",
+				"name": "REVIEWS_TARGET",
+				"privileges_with_grant_option": ["SELECT"]
+		}]
 		},
 		"application_user": {
 			
@@ -14,7 +19,13 @@
 				"schema": "VECTOR_DEMO",
 				"name": "PRODUCT_REVIEWS",
 				"privileges": ["SELECT"]
-			}]
+			},
+			{
+				"schema": "VECTOR_DEMO",
+				"name": "REVIEWS_TARGET",
+				"privileges": ["SELECT"]
+			}
+		]
 		}
 	}
 }

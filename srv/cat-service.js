@@ -7,6 +7,12 @@ module.exports = async (srv) => {
          
          return aihandler.connectToGenAI(input);
      }); 
+
+     srv.on('connectToOpenAI',async (req) => {
+        const input = '%'+req.data.prompt+'%';
+         
+         return aihandler.connectToOpenAI(input);
+     });
     
 
      
