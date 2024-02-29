@@ -20,7 +20,10 @@ const AI_API_VERSION = "2023-03-15-preview"
     const texts = prompt;
 
     //Enter the deployment id associated to the embedding model
-    const embedDeploymentId = "dd7f9b60b161ebc1";
+    const embedDeploymentIdGenAI = "<embedDeploymentID>";
+
+    //Enter the deployment id associated to sentiment defined in Gen AI hub.
+    const sentimentDeplymentIdGenAI = 'db29da32431562ca';
        
     //prepare the input data to be sent to Gen AI hub model       
     const payloadembed  = {
@@ -30,7 +33,7 @@ const AI_API_VERSION = "2023-03-15-preview"
     //call Gen AI rest API via the desyination              
     const responseEmbed = await aiCoreService.send({
                     // @ts-ignore
-                    query: `POST /inference/deployments/${embedDeploymentId}/embeddings?api-version=${API_VERSION}`,
+                    query: `POST /inference/deployments/${embedDeploymentIdGenAI}/embeddings?api-version=${API_VERSION}`,
                     data: payloadembed,
                     headers: headers
                 });
@@ -47,8 +50,7 @@ const AI_API_VERSION = "2023-03-15-preview"
 
     //Pass the embedding to LLM model to receive the sentiment.
 
-    //Provide the deployment id associated to sentiment defined in Gen AI hub.
-    const sentimentDeplymentId = 'db29da32431562ca';
+    
     var sentimentPrompt = null;
     var payload = {};
     var sentimentResponse = {};
@@ -67,7 +69,7 @@ const AI_API_VERSION = "2023-03-15-preview"
     
     sentimentResponse = await aiCoreService.send({
         // @ts-ignore
-        query: `POST /inference/deployments/${sentimentDeplymentId}/completions?api-version=${API_VERSION}`,
+        query: `POST /inference/deployments/${sentimentDeplymentIdGenAI}/completions?api-version=${API_VERSION}`,
         data: payload,
         headers: headers
     });
@@ -94,7 +96,7 @@ async function connectToOpenAI(prompt)
     const texts = prompt;
 
     //Enter the deployment id associated to the embedding model
-    const embedDeploymentId = "t4sap";
+    const embedDeploymentIdOpenAI = "t4sap";
        
     //prepare the input data to be sent to Gen AI hub model       
     const payloadembed  = {
@@ -104,7 +106,7 @@ async function connectToOpenAI(prompt)
     //call Gen AI rest API via the desyination              
     const responseEmbed = await aiCoreService.send({
                     // @ts-ignore
-                    query: `POST openai/deployments/${embedDeploymentId}/embeddings?api-version=${AI_API_VERSION}`,
+                    query: `POST openai/deployments/${embedDeploymentIdOpenAI}/embeddings?api-version=${AI_API_VERSION}`,
                     data: payloadembed,
                     headers: headers
                 });
@@ -122,7 +124,7 @@ async function connectToOpenAI(prompt)
     //Pass the embedding to LLM model to receive the sentiment.
 
     //Provide the deployment id associated to sentiment defined in Gen AI hub.
-    const sentimentDeplymentId = 'ai4sap';
+    const sentimentDeplymentIdOpenAI = 'ai4sap';
     var sentimentPrompt = null;
     var payload = {};
     var sentimentResponse = {};
@@ -141,7 +143,7 @@ async function connectToOpenAI(prompt)
     
     sentimentResponse = await aiCoreService.send({
         // @ts-ignore
-        query: `POST openai/deployments/${sentimentDeplymentId}/completions/?api-version=${AI_API_VERSION}`,
+        query: `POST openai/deployments/${sentimentDeplymentIdOpenAI}/completions/?api-version=${AI_API_VERSION}`,
         data: payload,
         headers: headers
     });
