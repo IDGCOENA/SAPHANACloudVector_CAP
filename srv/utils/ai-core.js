@@ -23,7 +23,7 @@ const AI_API_VERSION = "2023-03-15-preview"
     const embedDeploymentIdGenAI = "<embedDeploymentID>";
 
     //Enter the deployment id associated to sentiment defined in Gen AI hub.
-    const sentimentDeplymentIdGenAI = 'db29da32431562ca';
+    const sentimentDeploymentIdGenAI = '<sentimentDeploymetID>';
        
     //prepare the input data to be sent to Gen AI hub model       
     const payloadembed  = {
@@ -69,7 +69,7 @@ const AI_API_VERSION = "2023-03-15-preview"
     
     sentimentResponse = await aiCoreService.send({
         // @ts-ignore
-        query: `POST /inference/deployments/${sentimentDeplymentIdGenAI}/completions?api-version=${API_VERSION}`,
+        query: `POST /inference/deployments/${sentimentDeploymentIdGenAI}/completions?api-version=${API_VERSION}`,
         data: payload,
         headers: headers
     });
@@ -96,7 +96,10 @@ async function connectToOpenAI(prompt)
     const texts = prompt;
 
     //Enter the deployment id associated to the embedding model
-    const embedDeploymentIdOpenAI = "t4sap";
+    const embedDeploymentIdOpenAI = "<embeddingDeploymentID>";
+
+    //Provide the deployment id associated to sentiment defined in Gen AI hub.
+    const sentimentDeploymentIdOpenAI = '<sentimentDeploymentID>';
        
     //prepare the input data to be sent to Gen AI hub model       
     const payloadembed  = {
@@ -123,8 +126,7 @@ async function connectToOpenAI(prompt)
 
     //Pass the embedding to LLM model to receive the sentiment.
 
-    //Provide the deployment id associated to sentiment defined in Gen AI hub.
-    const sentimentDeplymentIdOpenAI = 'ai4sap';
+   
     var sentimentPrompt = null;
     var payload = {};
     var sentimentResponse = {};
@@ -143,7 +145,7 @@ async function connectToOpenAI(prompt)
     
     sentimentResponse = await aiCoreService.send({
         // @ts-ignore
-        query: `POST openai/deployments/${sentimentDeplymentIdOpenAI}/completions/?api-version=${AI_API_VERSION}`,
+        query: `POST openai/deployments/${sentimentDeploymentIdOpenAI}/completions/?api-version=${AI_API_VERSION}`,
         data: payload,
         headers: headers
     });
