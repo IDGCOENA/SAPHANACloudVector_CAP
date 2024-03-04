@@ -28,11 +28,6 @@ modules:
     properties:
       key: ServiceName_1
       service: ~{the-service-name}
-  - name: cross-container-service-2
-    group: SERVICE_REPLACEMENTS
-    properties:
-      key: ServiceName_2
-      service: ~{the-service-name}
   parameters:
     buildpack: nodejs_buildpack
 - name: llm_cap-app-content
@@ -68,12 +63,6 @@ resources:
   properties:
     hdi-container-name: ${service-name}
 - name: cross-container-service-1
-  type: org.cloudfoundry.existing-service
-  parameters:
-    service-name: ups-LLM
-  properties:
-    the-service-name: ${service-name}
-- name: cross-container-service-2
   type: org.cloudfoundry.existing-service
   parameters:
     service-name: ups-VECTOR
