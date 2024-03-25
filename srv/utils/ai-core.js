@@ -20,10 +20,10 @@ const AI_API_VERSION = "2023-03-15-preview"
     const texts = prompt;
 
     //Enter the deployment id associated to the embedding model
-    const embedDeploymentIdGenAI = "dd7f9b60b161ebc1";
+    const embedDeploymentIdGenAI = "<Your DeploymenT ID>";
 
     //Enter the deployment id associated to sentiment defined in Gen AI hub.
-    const sentimentDeploymentIdGenAI = "db29da32431562ca";
+    const sentimentDeploymentIdGenAI = "<Your DeploymenT ID>"";
        
     //prepare the input data to be sent to Gen AI hub model       
     const payloadembed  = {
@@ -86,7 +86,7 @@ const AI_API_VERSION = "2023-03-15-preview"
 async function connectToOpenAI(prompt)
 {
 
-    const apikey = "93c4ccc9eac54631afcf7b181cc48b0f"; 
+    const apikey = "<Your Azure Open AI Key>"; 
     const headers = { "Content-Type": "application/json", "api-key": apikey };
 
     //connect to the Gen AI hub destination service  
