@@ -20,10 +20,10 @@ const AI_API_VERSION = "2023-03-15-preview"
     const texts = prompt;
 
     //Enter the deployment id associated to the embedding model
-    const embedDeploymentIdGenAI = "<embedDeploymentID>";
+    const embedDeploymentIdGenAI = "dd7f9b60b161ebc1";
 
     //Enter the deployment id associated to sentiment defined in Gen AI hub.
-    const sentimentDeploymentIdGenAI = '<sentimentDeploymetID>';
+    const sentimentDeploymentIdGenAI = "db29da32431562ca";
        
     //prepare the input data to be sent to Gen AI hub model       
     const payloadembed  = {

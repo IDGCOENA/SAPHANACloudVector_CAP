@@ -2,11 +2,7 @@
 		"ups-VECTOR": {
 		"object_owner": {
 			
-			"object_privileges": [{
-			    "schema": "VECTOR_DEMO",
-				"name": "PRODUCT_REVIEWS",
-				"privileges_with_grant_option": ["SELECT"]
-			},
+			"object_privileges": [
 		{
 			"schema": "VECTOR_DEMO",
 				"name": "REVIEWS_TARGET",
@@ -15,11 +11,7 @@
 		},
 		"application_user": {
 			
-			"object_privileges": [{
-				"schema": "VECTOR_DEMO",
-				"name": "PRODUCT_REVIEWS",
-				"privileges": ["SELECT"]
-			},
+			"object_privileges": [
 			{
 				"schema": "VECTOR_DEMO",
 				"name": "REVIEWS_TARGET",
