@@ -20,10 +20,13 @@ const AI_API_VERSION = "2023-03-15-preview"
     const texts = prompt;
 
     //Enter the deployment id associated to the embedding model
-    const embedDeploymentIdGenAI = "<Your DeploymenT ID>";
+
+    const embedDeploymentIdGenAI =  "<Your DeploymenT ID>";
 
     //Enter the deployment id associated to sentiment defined in Gen AI hub.
-    const sentimentDeploymentIdGenAI = "<Your DeploymenT ID>"";
+    const sentimentDeploymentIdGenAI =  "<Your DeploymenT ID>";
+
+
        
     //prepare the input data to be sent to Gen AI hub model       
     const payloadembed  = {
@@ -96,10 +99,10 @@ async function connectToOpenAI(prompt)
     const texts = prompt;
 
     //Enter the deployment id associated to the embedding model
-    const embedDeploymentIdOpenAI = "<embeddingDeploymentID>";
+    const embedDeploymentIdOpenAI =  "<Your DeploymenT ID>";
 
     //Provide the deployment id associated to sentiment defined in Gen AI hub.
-    const sentimentDeploymentIdOpenAI = '<sentimentDeploymentID>';
+    const sentimentDeploymentIdOpenAI =  "<Your DeploymenT ID>";
        
     //prepare the input data to be sent to Gen AI hub model       
     const payloadembed  = {

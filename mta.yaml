@@ -1,13 +1,15 @@
 _schema-version: "3.1"
 ID: llm_cap
 description: A simple CAP project.
-version: 2.0.0
+version: 4.1.0
 modules:
 - name: llm_cap-srv
   type: nodejs
-  path: srv
+  path: gen/srv
   requires:
   - name: llm_cap-db
+  - name: llm_cap-auth
+  - name: llmcap-destination-service
   provides:
   - name: srv-api
     properties:
@@ -30,20 +32,39 @@ modules:
       service: ~{the-service-name}
   parameters:
     buildpack: nodejs_buildpack
-- name: llm_cap-app-content
-  type: com.sap.application.content
-  path: .
+- name: llmcap
+  type: approuter.nodejs
+  path: app/router
   requires:
-  - name: llm_cap-repo-host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv-api
+      url: ~{srv-url}
+  - name: llm_cap-auth
+  - name: llmcap-html5-repo-runtime
+  - name: llmcap-destination-service
+    group: destinations
+    properties:
+      forwardAuthToken: false
+      name: ui5
+      url: https://ui5.sap.com
+  parameters:
+    disk-quota: 256M
+    keep-existing-routes: true
+    memory: 256M
+    
+
+- name: llmcap-app-deployer
+  type: com.sap.application.content
+  path: app/html5-deployer
+  parameters:
+  
+    build-parameters:
+      ignore: [".DS_Store", "node_modules/", "manifest*.yml"]
     requires:
-    - artifacts:
-      - project1.zip
-      name: project1
-      target-path: resources/
+      - name: llmcap-repo-host      
 - name: project1
   type: html5
   path: app/project1
@@ -55,6 +76,26 @@ modules:
     - npm run build:cf
     supported-platforms: []
 resources:
+- name: llm_cap-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: llmcap-${space}
+      oauth2-configuration:
+          
+          credential-types:
+            - binding-secret
+            - x509 
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: llmcap-html5-repo-runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+      service-plan: app-runtime
+      service-name: ${space}-ai-html5-repo-runtime
+      service: html5-apps-repo    
 - name: llm_cap-db
   type: com.sap.xs.hdi-container
   parameters:
@@ -68,13 +109,13 @@ resources:
     service-name: ups-VECTOR
   properties:
     the-service-name: ${service-name}
-- name: llm_cap-repo-host
+- name: llmcap-repo-host
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
-    service-name: llm_cap-html5-srv
+    service-name: llmcap-html5-srv
     service-plan: app-host
-- name: llm_cap-destination-service
+- name: llmcap-destination-service
   type: org.cloudfoundry.managed-service
   parameters:
     config:
@@ -90,7 +131,14 @@ resources:
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
-    service-name: llm_cap-destination-service
+    service-name: llmcap-destination-service
     service-plan: lite
 parameters:
   deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production

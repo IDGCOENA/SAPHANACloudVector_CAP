@@ -9,6 +9,12 @@
       "destination": "ui5"
     },
     {
+    "source": "^/api/odata/v4/gen-ai/(.*)$",
+			"target": "/odata/v4/gen-ai/$1",
+			"destination": "srv-api",
+			"authenticationType": "xsuaa"
+    },
+    {
       "source": "^/test-resources/(.*)$",
       "target": "/test-resources/$1",
       "authenticationType": "none",
